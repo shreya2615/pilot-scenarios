@@ -42,6 +42,28 @@ style.innerHTML = `
     margin: 0 auto;
     background-color: #f9f9f9;
   }
+
+  .end-box {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 30px;
+    background: #fafafa;
+  }
+
+  .completion-code-box {
+    margin-top: 25px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 `;
 document.head.appendChild(style);
 
@@ -71,6 +93,9 @@ const participantID =
   jsPsych.data.getURLVariable("id") || Math.floor(Math.random() * 1000000).toString();
 
 jsPsych.data.addProperties({ participantID });
+
+// Put your real completion code here
+const COMPLETION_CODE = "PUT-YOUR-CODE-HERE";
 
 // Log one row per response
 const logToFirebase = (trialData) => {
@@ -102,6 +127,17 @@ const logToFirebase = (trialData) => {
       database.ref(`pilot_ceo_single_scenario/${pid}/trials`).push(entry);
     }
   }
+};
+
+const saveConnectID = (connectID) => {
+  const pid = jsPsych.data.get().values()[0]?.participantID || "unknown";
+
+  return database.ref(`pilot_ceo_single_scenario/${pid}/meta`).update({
+    participantID: pid,
+    connectID: connectID,
+    completionCodeShown: COMPLETION_CODE,
+    completedAt: Date.now()
+  });
 };
 
 // Instructions
@@ -239,7 +275,6 @@ function createTrialWithRatingsAndRanking(scenario) {
       btn.addEventListener("click", () => {
         const formData = new FormData(form);
 
-        // Check ratings
         const ratingKeys = scenario.candidates.map(c => `rating_${c.name.replace(/\s+/g, '')}`);
         for (const key of ratingKeys) {
           if (!formData.get(key)) {
@@ -248,7 +283,6 @@ function createTrialWithRatingsAndRanking(scenario) {
           }
         }
 
-        // Check ranks
         const ranks = [];
         for (let [key, val] of formData.entries()) {
           if (key.startsWith("rank_")) {
@@ -290,10 +324,71 @@ function createTrialWithRatingsAndRanking(scenario) {
   };
 }
 
+// End page with Connect ID + visible completion code
+const connectIDPage = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: `
+    <div class="end-box">
+      <h2>Study Complete</h2>
+      <p>Please enter your Connect ID below.</p>
+      <p>Your completion code is shown underneath. Please copy it for submission.</p>
+    </div>
+  `,
+  html: `
+    <div class="end-box">
+      <p>
+        <label for="connect_id"><strong>Connect ID:</strong></label><br><br>
+        <input
+          type="text"
+          id="connect_id"
+          name="connect_id"
+          required
+          style="width: 70%; max-width: 400px; font-size: 20px; padding: 10px; text-align: center;"
+        >
+      </p>
+
+      <div class="completion-code-box">
+        Completion Code: ${COMPLETION_CODE}
+      </div>
+
+      <p style="margin-top: 20px;">
+        After entering your Connect ID, click Continue.
+      </p>
+    </div>
+  `,
+  button_label: "Continue",
+  on_finish: function(data) {
+    let connectID = "";
+    try {
+      const parsed = JSON.parse(data.responses);
+      connectID = parsed.connect_id || "";
+    } catch (e) {
+      connectID = "";
+    }
+
+    data.connectID = connectID;
+    saveConnectID(connectID);
+  }
+};
+
+const finalPage = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <div class="end-box">
+      <h2>Thank you for participating</h2>
+      <p>Your responses have been recorded.</p>
+      <p>You may now return to the study platform and submit your completion code.</p>
+      <div class="completion-code-box">
+        ${COMPLETION_CODE}
+      </div>
+    </div>
+  `,
+  choices: "NO_KEYS"
+};
+
 let timeline = [];
 timeline.push(instructions_exp);
 
-// Shuffle the 3 candidates for each participant
 const shuffledCandidates = jsPsych.randomization.shuffle(ceoScenario.candidates);
 
 timeline.push(
@@ -303,21 +398,7 @@ timeline.push(
   })
 );
 
-timeline.push({
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: `
-    <div class="scenario-box" style="text-align:center;">
-      <h2>Thank you for participating!</h2>
-      <p>Your responses have been recorded. Please click the link below to return to CloudResearch.</p>
-      <p>
-        <a href="https://connect.cloudresearch.com/participant/project/F09A69B578/complete" target="_blank">
-          Click here to return to CloudResearch
-        </a>
-      </p>
-    </div>
-  `,
-  choices: "NO_KEYS",
-  trial_duration: 15000
-});
+timeline.push(connectIDPage);
+timeline.push(finalPage);
 
 jsPsych.run(timeline);
