@@ -95,7 +95,7 @@ const participantID =
 jsPsych.data.addProperties({ participantID });
 
 // Put your real completion code here
-const COMPLETION_CODE = "PUT-YOUR-CODE-HERE";
+const COMPLETION_CODE = "D66900519A";
 
 // Log one row per response
 const logToFirebase = (trialData) => {
@@ -377,7 +377,7 @@ const finalPage = {
     <div class="end-box">
       <h2>Thank you for participating</h2>
       <p>Your responses have been recorded.</p>
-      <p>You may now return to the study platform and submit your completion code.</p>
+      <p>You may now close this page and return to the study platform and submit your completion code.</p>
       <div class="completion-code-box">
         ${COMPLETION_CODE}
       </div>
