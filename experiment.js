@@ -141,7 +141,7 @@ const ceoScenario = {
     },
     {
       name: "Mark",
-      description: `As chief operating officer of a national food products firm, I spent much of my time overseeing large-scale changes inside plants that had been built for an earlier era of production. Over time, we introduced new systems that reduced manual bottlenecks, improved output, and changed the way work was organized across several facilities. Much of my career has involved helping established companies become faster, leaner, and better equipped for the demands of a more modern market. I tend to do my best work in organizations that need sharper execution and a more disciplined operating model to remain competitive.`
+      description: `As chief operating officer of a national automation firm, I spent much of my time overseeing large-scale changes inside plants that had been built for an earlier era of production. We specialized in introducing new systems that reduced manual bottlenecks, improved output, and changed the way work was organized across many different types of facilities. Much of my career has involved helping established companies become faster, leaner, and better equipped for the demands of a more modern market. I tend to do my best work in organizations that need sharper execution and a more disciplined operating model to remain competitive.`
     },
     {
       name: "Jason",
