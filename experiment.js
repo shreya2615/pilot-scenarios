@@ -168,6 +168,7 @@ const ceoScenario = {
       <p><strong>Location:</strong> Vancouver, BC</p>
       <p><strong>About the Company:</strong> Westline Foods is a Canadian company that produces packaged meal products for major grocery chains across North America. We have been in business for 75 years and developed a strong reputation for quality and steady growth. We have 5,200 employees. Currently we are challenged by slowing sales momentum and lagging profits. Our production facilities are 20 to 30 years old and very labour intensive. The board would like to move the company into the 21st Century through AI powered automation of plants and trimming of the work force.</p>
       <p>We are looking for a new CEO who can reinvigorate our sales momentum and profit margins by opening new markets and reigning in production costs through aggressive automation and workforce reduction.</p>
+      <p>Please scroll down to view the 3 applicants for this position.</p>
     </div>
   `,
   candidates: [
