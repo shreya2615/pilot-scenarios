@@ -167,18 +167,18 @@ const ceoScenario = {
       <h2>Job Posting: Chief Executive Officer (CEO)</h2>
       <p><strong>Location:</strong> Vancouver, BC</p>
       <p><strong>About the Company:</strong> Westline Foods is a Canadian company that produces packaged meal products for major grocery chains across North America. We have been in business for 75 years and developed a strong reputation for quality and steady growth. We have 5,200 employees. Currently we are challenged by slowing sales momentum and lagging profits. Our production facilities are 20 to 30 years old and very labour intensive. The board would like to move the company into the 21st Century through AI powered automation of plants and trimming of the work force.</p>
-      <p>We are looking for a new CEO who can reinvigorate our sales momentum and profit margins by opening new markets and reigning in production costs through aggressive automation and workforce reduction.</p>
+      <p>We are looking for a new CEO who can reinvigorate our sales momentum and profit margins by opening new markets and reigning in production costs through aggressive automation and payroll reduction.</p>
       <p><strong>Please scroll down to view the 3 applicants for this position.</strong></p>
     </div>
   `,
   candidates: [
     {
       name: "Robert",
-      description: `In my previous role as president of a large manufacturing company, I was brought in at a time when growth had begun to flatten and margins were under pressure. Over several years, we expanded into new regional and international accounts while modernizing older facilities that had become increasingly expensive to run. That work required difficult operational decisions, closer coordination between commercial and production teams, and a willingness to shift long-standing practices that no longer fit the pace of the industry. Colleagues often described me as someone who could move a company forward decisively while keeping attention on long-term competitiveness.`
+      description: `In my role as VP of a large manufacturing company, I was charged with reversing stagnating sales and declining profits. Under my lead we entered new regional and international markets while updating plants with newer automated systems that reduced labor costs and improved efficiency. This combination was instrumental in strengthening the company’s financial position over time. The role required making difficult decisions while working closely with not only sales and production teams, but also labor unions. Colleagues often described me as someone who could support growth while improving how a company operates.`
     },
     {
       name: "Mark",
-      description: `As chief operating officer of a national automation firm, I spent much of my time overseeing large-scale changes inside plants that had been built for an earlier era of production. We specialized in introducing new systems that reduced manual bottlenecks, improved output, and changed the way work was organized across many different types of facilities. Much of my career has involved helping established companies become faster, leaner, and better equipped for the demands of a more modern market. I tend to do my best work in organizations that need sharper execution and a more disciplined operating model to remain competitive.`
+      description: `As VP of marketing of a national manufacturing firm, I worked closely with senior leadership during a period when sales growth had begun to stagnate across several core business sectors. Over time, we looked for opportunities beyond our usual customer base, entering new regions and building relationships in markets the company had not worked in before. Much of my career has involved helping established companies adjust when familiar sources of growth begin to level off. I tend to do my best work in organizations that need clearer direction and a stronger position in changing markets.`
     },
     {
       name: "Jason",
