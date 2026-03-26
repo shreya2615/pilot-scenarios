@@ -95,7 +95,7 @@ const participantID =
 jsPsych.data.addProperties({ participantID });
 
 // Put your real completion code here
-const COMPLETION_CODE = "D66900519A";
+const COMPLETION_CODE = "58B0E7E59B";
 
 // Log one row per response
 const logToFirebase = (trialData) => {
